@@ -1,0 +1,179 @@
+---
+title: "Aaron Gullickson's CV"
+author: Aaron Gullickson
+date: "`r Sys.Date()`"
+params:
+  pdf_mode:
+    value: true
+output:
+  pagedown::html_resume:
+    css: ['dd_cv.css', 'resume']
+    self_contained: true
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+
+library(magrittr) # For the pipe
+source("cv_printing_functions.r")
+
+# Read in all data and initialize a CV printer object
+CV <- create_CV_object(
+  data_location = "https://docs.google.com/spreadsheets/d/1scjvE65qm5YXS-JG4-CRPiLEqsz6p4y34WX6ipEct_w/edit#gid=917338460",  
+  pdf_mode = params$pdf_mode
+)
+
+```
+
+
+```{r}
+# When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
+if(params$pdf_mode) {
+    cat("
+<style>
+:root{
+  --decorator-outer-offset-left: -6.5px;
+}
+</style>")
+}
+```
+
+
+Aside
+================================================================================
+
+```{r}
+# Build interactive network of positions colored by section
+# and connected if they occurred in the same year
+#datadrivencv::build_network_logo(CV$entries_data)
+```
+
+
+```{r}
+if(params$pdf_mode){
+  cat("View this CV online with links at _https://aarongullickson.netlify.app/cv/_")
+} else {
+  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://aarongullickson.netlify.app/cv/aarongull_cv.pdf)")
+}
+```
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_contact_info()
+```
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Last updated on `r Sys.Date()`.
+
+
+
+Main
+================================================================================
+
+Aaron Gullickson {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+# Note the special double pipe so we modify the CV object in place
+CV %<>% print_text_block("intro") 
+```
+
+
+Employment {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+
+
+```{r}
+CV %<>% print_section('employment')
+```
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+CV %<>% print_text_block('education_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('education')
+```
+
+Publications {data-icon=book data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('academic_articles')
+```
+
+Grants Awarded {data-icon=money-bill data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('grants_awarded')
+```
+
+Courses Taught {data-icon=chalkboard-teacher data-concise=true}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+CV %<>% print_text_block('courses_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('classes_taught')
+```
+
+Student Advising {data-icon=chalkboard-teacher data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('students_advised')
+```
+
+Service, Departmental {data-icon=home data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('service_department')
+```
+
+Service, University {data-icon=home data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('service_university')
+```
+
+Service, Professional {data-icon=home data-concise=true}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+CV %<>% print_text_block('service_aside')
+```
+:::
+
+
+```{r}
+CV %<>% print_section('service_professional')
+```
+
+
+```{r}
+CV %<>% print_links()
+```
+
