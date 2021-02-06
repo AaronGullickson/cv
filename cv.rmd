@@ -54,7 +54,7 @@ Aside
 
 ```{r}
 if(params$pdf_mode){
-  cat("View this CV online with links at _https://aarongullickson.netlify.app/cv/_")
+  cat("[View this CV online with links](https://aarongullickson.netlify.app/cv/)")
 } else {
   cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://aarongullickson.netlify.app/cv/aarongull_cv.pdf)")
 }
