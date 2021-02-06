@@ -124,6 +124,20 @@ Grants Awarded {data-icon=money-bill data-concise=true}
 CV %<>% print_section('grants_awarded')
 ```
 
+Recent Invited Talks {data-icon=comment data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('invited_talks')
+```
+
+Recent Conference Presentations {data-icon=users data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('conference_talks')
+```
+
 Courses Taught {data-icon=chalkboard-teacher data-concise=true}
 --------------------------------------------------------------------------------
 
@@ -137,7 +151,7 @@ CV %<>% print_text_block('courses_aside')
 CV %<>% print_section('classes_taught')
 ```
 
-Student Advising {data-icon=chalkboard-teacher data-concise=true}
+Student Advising {data-icon=people-carry data-concise=true}
 --------------------------------------------------------------------------------
 
 ```{r}
